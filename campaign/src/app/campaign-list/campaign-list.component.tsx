@@ -2,7 +2,7 @@ import { Component, type OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterLink } from "@angular/router"
 import type { Observable } from "rxjs"
-import type { Campaign } from "shared/src/models/campaign.model"
+import type { Campaign } from "../models/campaign.model"
 import type { CampaignService } from "../services/campaign.service"
 
 @Component({

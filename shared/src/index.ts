@@ -9,7 +9,7 @@ export * from "./services/notification.service"
 // Guards
 export * from "./guards/auth.guard"
 
-// Models/Interfaces
+// Models/Interfaces - Only truly shared models
 export * from "./models/user.model"
 export * from "./models/common.model"
 

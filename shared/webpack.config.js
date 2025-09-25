@@ -3,20 +3,14 @@ const ModuleFederationPlugin = require("@angular-architects/module-federation/we
 module.exports = {
   plugins: [
     new ModuleFederationPlugin({
-      name: "campaign",
+      name: "shared",
       filename: "remoteEntry.js",
-      remotes: {
-        shared: "http://localhost:4203/remoteEntry.js",
-      },
       exposes: {
-        "./Module": "./src/app/campaign.module.ts",
+        "./Models": "./src/index.ts",
       },
       shared: {
         "@angular/core": { singleton: true, strictVersion: true, requiredVersion: "^18.2.0" },
         "@angular/common": { singleton: true, strictVersion: true, requiredVersion: "^18.2.0" },
-        "@angular/common/http": { singleton: true, strictVersion: true, requiredVersion: "^18.2.0" },
-        "@angular/router": { singleton: true, strictVersion: true, requiredVersion: "^18.2.0" },
-        "@angular/forms": { singleton: true, strictVersion: true, requiredVersion: "^18.2.0" },
         rxjs: { singleton: true, strictVersion: true, requiredVersion: "^7.8.0" },
       },
     }),

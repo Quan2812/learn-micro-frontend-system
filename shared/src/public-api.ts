@@ -10,10 +10,8 @@ export * from "./services/auth.service"
 export * from "./services/communication.service"
 export * from "./services/notification.service"
 
-// Models
+// Models - Only truly shared models
 export * from "./models/user.model"
-export * from "./models/campaign.model"
-export * from "./models/template.model"
 export * from "./models/common.model"
 
 // Types

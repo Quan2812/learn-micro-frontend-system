@@ -1,7 +1,6 @@
 import { Injectable } from "@angular/core"
 import { BehaviorSubject, type Observable, of } from "rxjs"
-import type { Campaign, CampaignMetrics } from "shared/src/models/campaign.model"
-import { CampaignStatus } from "shared/src/models/campaign-status.enum" // Added import for CampaignStatus
+import type { Campaign, CampaignMetrics, CampaignStatus } from "../models/campaign.model"
 
 @Injectable({
   providedIn: "root",
@@ -83,7 +82,7 @@ export class CampaignService {
         id: "1",
         name: "Summer Sale 2025",
         description: "Promote summer products with special discounts",
-        status: CampaignStatus.ACTIVE,
+        status: "ACTIVE" as CampaignStatus,
         startDate: new Date("2025-06-01"),
         endDate: new Date("2025-08-31"),
         budget: 50000,
@@ -96,7 +95,7 @@ export class CampaignService {
         id: "2",
         name: "Back to School",
         description: "Target students and parents for school supplies",
-        status: CampaignStatus.DRAFT,
+        status: "DRAFT" as CampaignStatus,
         startDate: new Date("2025-08-01"),
         endDate: new Date("2025-09-15"),
         budget: 30000,
@@ -109,7 +108,7 @@ export class CampaignService {
         id: "3",
         name: "Holiday Campaign",
         description: "Christmas and New Year promotional campaign",
-        status: CampaignStatus.COMPLETED,
+        status: "COMPLETED" as CampaignStatus,
         startDate: new Date("2024-12-01"),
         endDate: new Date("2025-01-15"),
         budget: 75000,
