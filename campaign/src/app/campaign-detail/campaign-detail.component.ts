@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { ActivatedRoute, RouterLink } from "@angular/router";
 import { Observable } from "rxjs";
-import { Campaign, CampaignStats } from "../models/campaign.model";
+import { Campaign } from "../models/campaign.model";
 import { CampaignService } from "../services/campaign.service";
 
 @Component({
@@ -55,36 +55,6 @@ import { CampaignService } from "../services/campaign.service";
             </div>
           </div>
         </div>
-        
-        <div class="campaign-stats" *ngIf="stats$ | async as stats">
-          <h3>Performance Statistics</h3>
-          <div class="stats-grid">
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.impressions | number }}</div>
-              <div class="stat-label">Impressions</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.clicks | number }}</div>
-              <div class="stat-label">Clicks</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.conversions | number }}</div>
-              <div class="stat-label">Conversions</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.ctr | number:'1.2-2' }}%</div>
-              <div class="stat-label">CTR</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.cpc | currency:'USD':'symbol':'1.2-2' }}</div>
-              <div class="stat-label">CPC</div>
-            </div>
-            <div class="stat-card">
-              <div class="stat-value">{{ stats.roi | number:'1.0-0' }}%</div>
-              <div class="stat-label">ROI</div>
-            </div>
-          </div>
-        </div>
       </div>
       
       <div *ngIf="!(campaign$ | async)" class="not-found">
@@ -98,7 +68,6 @@ import { CampaignService } from "../services/campaign.service";
 })
 export class CampaignDetailComponent implements OnInit {
   campaign$: Observable<Campaign | undefined>;
-  stats$: Observable<CampaignStats>;
   campaignId: string;
 
   constructor(
@@ -107,7 +76,6 @@ export class CampaignDetailComponent implements OnInit {
   ) {
     this.campaignId = this.route.snapshot.params["id"];
     this.campaign$ = this.campaignService.getCampaignById(this.campaignId);
-    this.stats$ = this.campaignService.getCampaignStats(this.campaignId);
   }
 
   ngOnInit(): void {}
