@@ -1,9 +1,9 @@
-import { Component, type OnInit } from "@angular/core"
-import { CommonModule } from "@angular/common"
-import { type ActivatedRoute, RouterLink } from "@angular/router"
-import type { Observable } from "rxjs"
-import type { Campaign, CampaignStats } from "../models/campaign.model"
-import type { CampaignService } from "../services/campaign.service"
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { Observable } from "rxjs";
+import { Campaign, CampaignStats } from "../models/campaign.model";
+import { CampaignService } from "../services/campaign.service";
 
 @Component({
   selector: 'app-campaign-detail',
@@ -20,7 +20,7 @@ import type { CampaignService } from "../services/campaign.service"
         <div class="campaign-info">
           <div class="info-header">
             <h2>{{ campaign.name }}</h2>
-            <span class="status-badge" [class]="'status-' + campaign.status">
+            <span class="status-badge" [ngClass]="'status-' + campaign.status">
               {{ campaign.status | titlecase }}
             </span>
           </div>
@@ -30,7 +30,8 @@ import type { CampaignService } from "../services/campaign.service"
           <div class="info-grid">
             <div class="info-item">
               <span class="label">Budget</span>
-              <span class="value\">${{ campaign.budget | number }}</span>
+              <span class="value">{{ campaign.budget | currency:'USD':'symbol':'1.0-0' }}</span>
+              <!-- Hoặc: <span class="value">$ {{ campaign.budget | number }}</span> -->
             </div>
             <div class="info-item">
               <span class="label">Target Audience</span>
@@ -75,7 +76,7 @@ import type { CampaignService } from "../services/campaign.service"
               <div class="stat-label">CTR</div>
             </div>
             <div class="stat-card">
-              <div class="stat-value\">${{ stats.cpc | number:'1.2-2' }}</div>
+              <div class="stat-value">{{ stats.cpc | currency:'USD':'symbol':'1.2-2' }}</div>
               <div class="stat-label">CPC</div>
             </div>
             <div class="stat-card">
@@ -96,17 +97,17 @@ import type { CampaignService } from "../services/campaign.service"
   styleUrls: ['./campaign-detail.component.scss']
 })
 export class CampaignDetailComponent implements OnInit {
-  campaign$: Observable<Campaign | undefined>
-  stats$: Observable<CampaignStats>
-  campaignId: string
+  campaign$: Observable<Campaign | undefined>;
+  stats$: Observable<CampaignStats>;
+  campaignId: string;
 
   constructor(
     private route: ActivatedRoute,
     private campaignService: CampaignService,
   ) {
-    this.campaignId = this.route.snapshot.params["id"]
-    this.campaign$ = this.campaignService.getCampaignById(this.campaignId)
-    this.stats$ = this.campaignService.getCampaignStats(this.campaignId)
+    this.campaignId = this.route.snapshot.params["id"];
+    this.campaign$ = this.campaignService.getCampaignById(this.campaignId);
+    this.stats$ = this.campaignService.getCampaignStats(this.campaignId);
   }
 
   ngOnInit(): void {}

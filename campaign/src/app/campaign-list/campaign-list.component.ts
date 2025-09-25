@@ -1,9 +1,9 @@
-import { Component, type OnInit } from "@angular/core"
-import { CommonModule } from "@angular/common"
-import { RouterLink } from "@angular/router"
-import type { Observable } from "rxjs"
-import type { Campaign } from "../models/campaign.model"
-import type { CampaignService } from "../services/campaign.service"
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterLink } from "@angular/router";
+import { Observable } from "rxjs";
+import { Campaign } from "../models/campaign.model";
+import { CampaignService } from "../services/campaign.service";
 
 @Component({
   selector: 'app-campaign-list',
@@ -20,7 +20,8 @@ import type { CampaignService } from "../services/campaign.service"
         <div class="campaign-card" *ngFor="let campaign of campaigns">
           <div class="campaign-header">
             <h3>{{ campaign.name }}</h3>
-            <span class="status-badge" [class]="'status-' + campaign.status">
+            <!-- Tránh ghi đè toàn bộ class bằng [class]; dùng [ngClass] -->
+            <span class="status-badge" [ngClass]="'status-' + campaign.status">
               {{ campaign.status | titlecase }}
             </span>
           </div>
@@ -30,7 +31,9 @@ import type { CampaignService } from "../services/campaign.service"
           <div class="campaign-details">
             <div class="detail-item">
               <span class="label">Budget:</span>
-              <span class="value\">${{ campaign.budget }}</span>
+              <!-- Cách 1: dùng currency pipe -->
+              <span class="value">{{ campaign.budget | currency:'USD':'symbol':'1.0-0' }}</span>
+              <!-- Cách 2 (đơn giản): <span class="value">$ {{ campaign.budget }}</span> -->
             </div>
             <div class="detail-item">
               <span class="label">Target:</span>
@@ -61,17 +64,17 @@ import type { CampaignService } from "../services/campaign.service"
   styleUrls: ['./campaign-list.component.scss']
 })
 export class CampaignListComponent implements OnInit {
-  campaigns$: Observable<Campaign[]>
+  campaigns$: Observable<Campaign[]>;
 
   constructor(private campaignService: CampaignService) {
-    this.campaigns$ = this.campaignService.getCampaigns()
+    this.campaigns$ = this.campaignService.getCampaigns();
   }
 
   ngOnInit(): void {}
 
   deleteCampaign(id: string): void {
     if (confirm("Are you sure you want to delete this campaign?")) {
-      this.campaignService.deleteCampaign(id).subscribe()
+      this.campaignService.deleteCampaign(id).subscribe();
     }
   }
 }

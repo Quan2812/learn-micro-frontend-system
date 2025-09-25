@@ -1,8 +1,8 @@
 import { Component } from "@angular/core"
 import { CommonModule } from "@angular/common"
-import { type FormBuilder, type FormGroup, Validators, ReactiveFormsModule } from "@angular/forms"
-import { type Router, RouterLink } from "@angular/router"
-import type { CampaignService } from "../services/campaign.service"
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from "@angular/forms"
+import { Router, RouterLink } from "@angular/router"
+import { CampaignService } from "../services/campaign.service"
 
 @Component({
   selector: "app-create-campaign",

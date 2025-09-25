@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import { BehaviorSubject, type Observable, of } from "rxjs"
+import { BehaviorSubject, Observable, of } from "rxjs"
 import type { Campaign, CampaignStats } from "../models/campaign.model"
 
 @Injectable({
