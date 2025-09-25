@@ -1,6 +1,6 @@
 import type { Routes } from "@angular/router"
 import { HomeComponent } from "./home/home.component"
-import { loadRemoteModule } from "@module-federation/enhanced/runtime"
+import { loadRemote } from "@module-federation/enhanced/runtime"
 import { MicroFrontendGuard } from "./guards/micro-frontend.guard"
 
 export const routes: Routes = [
@@ -12,21 +12,21 @@ export const routes: Routes = [
     path: "campaign",
     canActivate: [MicroFrontendGuard],
     loadChildren: () =>
-      loadRemoteModule({
+      loadRemote<any>({
         type: "module",
         remoteName: "campaign",
         exposedModule: "./Module",
-      }).then((m) => m.CampaignModule),
+      }).then((m: any) => m.CampaignModule),
   },
   {
     path: "template",
     canActivate: [MicroFrontendGuard],
     loadChildren: () =>
-      loadRemoteModule({
+      loadRemote<any>({
         type: "module",
         remoteName: "template",
         exposedModule: "./Module",
-      }).then((m) => m.TemplateModule),
+      }).then((m: any) => m.TemplateModule),
   },
   {
     path: "**",
