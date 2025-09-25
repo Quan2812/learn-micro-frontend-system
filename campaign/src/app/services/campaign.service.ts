@@ -62,20 +62,6 @@ export class CampaignService {
     this.campaignsSubject.next(filteredCampaigns)
     return of(true)
   }
-
-  getCampaignStats(id: string): Observable<CampaignMetrics> {
-    // Mock stats data
-    const stats: CampaignMetrics = {
-      impressions: Math.floor(Math.random() * 100000) + 10000,
-      clicks: Math.floor(Math.random() * 5000) + 500,
-      conversions: Math.floor(Math.random() * 200) + 20,
-      ctr: Math.random() * 5 + 1,
-      cpc: Math.random() * 2 + 0.5,
-      roi: Math.random() * 300 + 100,
-    }
-    return of(stats)
-  }
-
   private getMockCampaigns(): Campaign[] {
     return [
       {

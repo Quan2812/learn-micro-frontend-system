@@ -1,0 +1,82 @@
+import { Component, OnInit } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { ActivatedRoute, RouterLink } from "@angular/router";
+import { Observable } from "rxjs";
+import { Campaign } from "../models/campaign.model";
+import { CampaignService } from "../services/campaign.service";
+
+@Component({
+  selector: 'app-campaign-detail',
+  standalone: true,
+  imports: [CommonModule, RouterLink],
+  template: `
+    <div class="campaign-detail-container">
+      <div class="header">
+        <h1>Campaign Details</h1>
+        <a routerLink="/campaign" class="btn btn-outline">Back to List</a>
+      </div>
+      
+      <div *ngIf="campaign$ | async as campaign" class="campaign-detail">
+        <div class="campaign-info">
+          <div class="info-header">
+            <h2>{{ campaign.name }}</h2>
+            <span class="status-badge" [ngClass]="'status-' + campaign.status">
+              {{ campaign.status | titlecase }}
+            </span>
+          </div>
+          
+          <p class="campaign-description">{{ campaign.description }}</p>
+          
+          <div class="info-grid">
+            <div class="info-item">
+              <span class="label">Budget</span>
+              <span class="value">{{ campaign.budget | currency:'USD':'symbol':'1.0-0' }}</span>
+              <!-- Hoặc: <span class="value">$ {{ campaign.budget | number }}</span> -->
+            </div>
+            <div class="info-item">
+              <span class="label">Target Audience</span>
+              <span class="value">{{ campaign.targetAudience }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Start Date</span>
+              <span class="value">{{ campaign.startDate | date:'fullDate' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">End Date</span>
+              <span class="value">{{ campaign.endDate | date:'fullDate' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Created</span>
+              <span class="value">{{ campaign.createdAt | date:'medium' }}</span>
+            </div>
+            <div class="info-item">
+              <span class="label">Last Updated</span>
+              <span class="value">{{ campaign.updatedAt | date:'medium' }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div *ngIf="!(campaign$ | async)" class="not-found">
+        <h3>Campaign not found</h3>
+        <p>The requested campaign could not be found.</p>
+        <a routerLink="/campaign" class="btn btn-primary">Back to List</a>
+      </div>
+    </div>
+  `,
+  styleUrls: ['./campaign-detail.component.scss']
+})
+export class CampaignDetailComponent implements OnInit {
+  campaign$: Observable<Campaign | undefined>;
+  campaignId: string;
+
+  constructor(
+    private route: ActivatedRoute,
+    private campaignService: CampaignService,
+  ) {
+    this.campaignId = this.route.snapshot.params["id"];
+    this.campaign$ = this.campaignService.getCampaignById(this.campaignId);
+  }
+
+  ngOnInit(): void {}
+}
