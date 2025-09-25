@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core"
-import { BehaviorSubject, type Observable, of } from "rxjs"
-import type { Template, TemplatePreview } from "../models/template.model"
+import { BehaviorSubject, Observable, of } from "rxjs"
+import { Template, TemplatePreview } from "../models/template.model"
 
 @Injectable({
   providedIn: "root",

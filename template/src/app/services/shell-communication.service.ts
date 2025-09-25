@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core"
-import type { Router } from "@angular/router"
+import { Router } from "@angular/router"
 
 // Service to communicate with shell application
 @Injectable({

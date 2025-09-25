@@ -1,10 +1,10 @@
-import { Component, type OnInit } from "@angular/core"
+import { Component, OnInit } from "@angular/core"
 import { CommonModule } from "@angular/common"
 import { RouterLink } from "@angular/router"
 import { FormsModule } from "@angular/forms"
-import type { Observable } from "rxjs"
-import type { Template } from "../models/template.model"
-import type { TemplateService } from "../services/template.service"
+import { Observable } from "rxjs"
+import { Template } from "../models/template.model"
+import { TemplateService } from "../services/template.service"
 
 @Component({
   selector: "app-template-list",
