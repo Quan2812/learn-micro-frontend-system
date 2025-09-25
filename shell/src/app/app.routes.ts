@@ -11,22 +11,12 @@ export const routes: Routes = [
   {
     path: "campaign",
     canActivate: [MicroFrontendGuard],
-    loadChildren: () =>
-      loadRemote<any>({
-        type: "module",
-        remoteName: "campaign",
-        exposedModule: "./Module",
-      }).then((m: any) => m.CampaignModule),
+    loadChildren: () => loadRemote<any>("campaign/Module").then((m: any) => m.CampaignModule),
   },
   {
     path: "template",
     canActivate: [MicroFrontendGuard],
-    loadChildren: () =>
-      loadRemote<any>({
-        type: "module",
-        remoteName: "template",
-        exposedModule: "./Module",
-      }).then((m: any) => m.TemplateModule),
+    loadChildren: () => loadRemote<any>("template/Module").then((m: any) => m.TemplateModule),
   },
   {
     path: "**",
