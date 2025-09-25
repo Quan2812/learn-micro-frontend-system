@@ -67,7 +67,8 @@
     "@module-federation/enhanced": "0.19.1",
     "rxjs": "7.8.2",
     "@angular/forms": "20.3.2",
-    "@angular-architects/module-federation": "20.0.0"
+    "@angular-architects/module-federation": "20.0.0",
+    "shared": "0.2.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.1.9",

@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core"
-import { BehaviorSubject, Observable, of } from "rxjs"
-import type { Campaign, CampaignStats } from "../models/campaign.model"
+import { BehaviorSubject, type Observable, of } from "rxjs"
+import type { Campaign, CampaignMetrics } from "shared/src/models/campaign.model"
+import { CampaignStatus } from "shared/src/models/campaign-status.enum" // Added import for CampaignStatus
 
 @Injectable({
   providedIn: "root",
@@ -21,10 +22,11 @@ export class CampaignService {
     return of(campaign)
   }
 
-  createCampaign(campaign: Omit<Campaign, "id" | "createdAt" | "updatedAt">): Observable<Campaign> {
+  createCampaign(campaign: Omit<Campaign, "id" | "createdAt" | "updatedAt" | "createdBy">): Observable<Campaign> {
     const newCampaign: Campaign = {
       ...campaign,
       id: this.generateId(),
+      createdBy: "current-user", // TODO: Get from auth service
       createdAt: new Date(),
       updatedAt: new Date(),
     }
@@ -62,9 +64,9 @@ export class CampaignService {
     return of(true)
   }
 
-  getCampaignStats(id: string): Observable<CampaignStats> {
+  getCampaignStats(id: string): Observable<CampaignMetrics> {
     // Mock stats data
-    const stats: CampaignStats = {
+    const stats: CampaignMetrics = {
       impressions: Math.floor(Math.random() * 100000) + 10000,
       clicks: Math.floor(Math.random() * 5000) + 500,
       conversions: Math.floor(Math.random() * 200) + 20,
@@ -81,11 +83,12 @@ export class CampaignService {
         id: "1",
         name: "Summer Sale 2025",
         description: "Promote summer products with special discounts",
-        status: "active",
+        status: CampaignStatus.ACTIVE,
         startDate: new Date("2025-06-01"),
         endDate: new Date("2025-08-31"),
         budget: 50000,
-        targetAudience: "Adults 25-45",
+        targetAudience: ["Adults 25-45"],
+        createdBy: "admin",
         createdAt: new Date("2025-05-15"),
         updatedAt: new Date("2025-05-15"),
       },
@@ -93,11 +96,12 @@ export class CampaignService {
         id: "2",
         name: "Back to School",
         description: "Target students and parents for school supplies",
-        status: "draft",
+        status: CampaignStatus.DRAFT,
         startDate: new Date("2025-08-01"),
         endDate: new Date("2025-09-15"),
         budget: 30000,
-        targetAudience: "Students and Parents",
+        targetAudience: ["Students", "Parents"],
+        createdBy: "admin",
         createdAt: new Date("2025-05-10"),
         updatedAt: new Date("2025-05-10"),
       },
@@ -105,11 +109,12 @@ export class CampaignService {
         id: "3",
         name: "Holiday Campaign",
         description: "Christmas and New Year promotional campaign",
-        status: "completed",
+        status: CampaignStatus.COMPLETED,
         startDate: new Date("2024-12-01"),
         endDate: new Date("2025-01-15"),
         budget: 75000,
-        targetAudience: "General Public",
+        targetAudience: ["General Public"],
+        createdBy: "admin",
         createdAt: new Date("2024-11-15"),
         updatedAt: new Date("2025-01-16"),
       },
