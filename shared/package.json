@@ -2,8 +2,7 @@
   "name": "shared-lib",
   "version": "1.0.0",
   "description": "Shared library for micro frontend system",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "sideEffects": false,
   "scripts": {
     "build": "ng-packagr -p ng-package.json",
     "build:watch": "ng-packagr -p ng-package.json --watch",
@@ -13,21 +12,23 @@
   "keywords": ["angular", "microfrontend", "shared"],
   "author": "Micro Frontend Team",
   "license": "MIT",
+
   "dependencies": {
-    "@angular/core": "^18.2.0",
-    "@angular/common": "^18.2.0",
-    "@angular/router": "^18.2.0",
-    "rxjs": "~7.8.0"
+    "tslib": "^2.6.2"
   },
+
   "devDependencies": {
     "ng-packagr": "^18.2.0",
     "typescript": "~5.5.0",
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "@angular/compiler": "^18.2.0",
+    "@angular/compiler-cli": "^18.2.0"
   },
+
   "peerDependencies": {
-    "@angular/core": "^18.2.0",
-    "@angular/common": "^18.2.0",
-    "@angular/router": "^18.2.0",
-    "rxjs": "~7.8.0"
+    "@angular/common": "^18.0.0",
+    "@angular/core": "^18.0.0",
+    "@angular/router": "^18.0.0",
+    "rxjs": "^7.8.0"
   }
 }
