@@ -31,5 +31,4 @@ export * from "./constants/app.constants"
 // Guards
 export * from "./guards/auth.guard"
 
-// Styles
-export * from "./styles/index.scss"
+// Styles should be imported directly in components or configured in ng-package.json
