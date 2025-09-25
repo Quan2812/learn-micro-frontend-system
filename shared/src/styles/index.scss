@@ -1,0 +1,16 @@
+// Import variables and mixins
+@import 'variables';
+@import 'mixins';
+
+// Export all styles for use in micro frontends
+:export {
+  // Colors
+  primaryColor: $primary-color;
+  secondaryColor: $secondary-color;
+  successColor: $success-color;
+  warningColor: $warning-color;
+  errorColor: $error-color;
+  infoColor: $info-color;
+  
+  // Spacing
+  spacingXs: $spacing-xs;

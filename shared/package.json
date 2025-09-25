@@ -1,0 +1,32 @@
+{
+  "name": "shared-lib",
+  "version": "1.0.0",
+  "description": "Shared library for micro frontend system",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "clean": "rimraf dist",
+    "prepublishOnly": "npm run clean && npm run build"
+  },
+  "keywords": ["angular", "microfrontend", "shared"],
+  "author": "Micro Frontend Team",
+  "license": "MIT",
+  "dependencies": {
+    "@angular/core": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "@angular/router": "^18.2.0",
+    "rxjs": "~7.8.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.5.0",
+    "rimraf": "^3.0.2"
+  },
+  "peerDependencies": {
+    "@angular/core": "^18.2.0",
+    "@angular/common": "^18.2.0",
+    "@angular/router": "^18.2.0",
+    "rxjs": "~7.8.0"
+  }
+}
