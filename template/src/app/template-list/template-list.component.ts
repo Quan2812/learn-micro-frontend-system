@@ -14,7 +14,7 @@ import { TemplateService } from "../services/template.service"
     <div class="template-list-container">
       <div class="header">
         <h1>Template Management</h1>
-        <a routerLink="/template/create" class="btn btn-primary">Create New Template</a>
+        <a routerLink="/create" class="btn btn-primary">Create New Template</a>
       </div>
       
       <div class="filters">
@@ -88,8 +88,8 @@ import { TemplateService } from "../services/template.service"
           </div>
           
           <div class="template-actions">
-            <a [routerLink]="['/template/detail', template.id]" class="btn btn-outline">View</a>
-            <a [routerLink]="['/template/editor', template.id]" class="btn btn-primary">Edit</a>
+            <a [routerLink]="['/detail', template.id]" class="btn btn-outline">View</a>
+            <a [routerLink]="['/editor', template.id]" class="btn btn-primary">Edit</a>
             <button class="btn btn-danger" (click)="deleteTemplate(template.id)">Delete</button>
           </div>
         </div>
@@ -99,7 +99,7 @@ import { TemplateService } from "../services/template.service"
         <h3>No templates found</h3>
         <p *ngIf="hasActiveFilters()">Try adjusting your filters or search terms.</p>
         <p *ngIf="!hasActiveFilters()">Create your first template to get started.</p>
-        <a routerLink="/template/create" class="btn btn-primary">Create Template</a>
+        <a routerLink="/create" class="btn btn-primary">Create Template</a>
       </div>
     </div>
   `,

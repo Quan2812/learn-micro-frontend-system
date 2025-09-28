@@ -15,7 +15,7 @@ import { TemplateService } from "../services/template.service"
       <div class="header">
         <h1>Template Details</h1>
         <div class="header-actions">
-          <a [routerLink]="['/template/editor', templateId]" class="btn btn-primary">Edit Template</a>
+          <a [routerLink]="['/editor', templateId]" class="btn btn-primary">Edit Template</a>
           <a routerLink="/template" class="btn btn-outline">Back to List</a>
         </div>
       </div>
