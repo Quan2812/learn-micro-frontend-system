@@ -5,19 +5,19 @@ import { CreateCampaignComponent } from "./create-campaign/create-campaign.compo
 
 export const routes: Routes = [
   {
-    path: "",
+    path: '',
     component: CampaignListComponent,
   },
   {
-    path: "create",
+    path: 'create',
     component: CreateCampaignComponent,
   },
   {
-    path: "detail/:id",
+    path: 'detail/:id',
     component: CampaignDetailComponent,
   },
   {
-    path: "**",
-    redirectTo: "",
+    path: '**',
+    redirectTo: '',
   },
 ]

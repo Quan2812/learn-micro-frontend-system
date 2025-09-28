@@ -13,7 +13,7 @@ import { CampaignService } from "../services/campaign.service";
     <div class="campaign-list-container">
       <div class="header">
         <h1>Campaign Management</h1>
-        <a routerLink="/campaign/create" class="btn btn-primary">Create New Campaign</a>
+        <a routerLink="create" class="btn btn-primary">Create New Campaign</a>
       </div>
       
       <div class="campaigns-grid" *ngIf="campaigns$ | async as campaigns">
@@ -48,7 +48,7 @@ import { CampaignService } from "../services/campaign.service";
           </div>
           
           <div class="campaign-actions">
-            <a [routerLink]="['/campaign/detail', campaign.id]" class="btn btn-outline">View Details</a>
+            <a [routerLink]="['detail', campaign.id]" class="btn btn-outline">View Details</a>
             <button class="btn btn-danger" (click)="deleteCampaign(campaign.id)">Delete</button>
           </div>
         </div>
@@ -70,7 +70,7 @@ export class CampaignListComponent implements OnInit {
     this.campaigns$ = this.campaignService.getCampaigns();
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void { }
 
   deleteCampaign(id: string): void {
     if (confirm("Are you sure you want to delete this campaign?")) {
