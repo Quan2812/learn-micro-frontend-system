@@ -1,25 +1,19 @@
-import type { Routes } from "@angular/router"
+import { Routes } from '@angular/router';
 import { HomeComponent } from "./home/home.component"
-import { loadRemote } from "@module-federation/enhanced/runtime"
-import { MicroFrontendGuard } from "./guards/micro-frontend.guard"
+import { loadRemote } from '@module-federation/enhanced/runtime';
 
 export const routes: Routes = [
   {
-    path: "",
-    component: HomeComponent,
+    path: 'campaign',
+    loadChildren: () =>
+      loadRemote('campaign/routes').then((m: any) => m.routes), // nếu remote expose routes
+    // hoặc: loadRemote('campaign/Module').then((m:any)=> m.CampaignModule)
   },
   {
-    path: "campaign",
-    canActivate: [MicroFrontendGuard],
-    loadChildren: () => loadRemote<any>("campaign/Module").then((m: any) => m.CampaignModule),
+    path: 'template',
+    loadChildren: () =>
+      loadRemote('template/routes').then((m: any) => m.routes),
   },
-  {
-    path: "template",
-    canActivate: [MicroFrontendGuard],
-    loadChildren: () => loadRemote<any>("template/Module").then((m: any) => m.TemplateModule),
-  },
-  {
-    path: "**",
-    redirectTo: "",
-  },
-]
+  { path: '', component: HomeComponent },
+  { path: '**', redirectTo: '' },
+];
