@@ -6,8 +6,8 @@ import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { init } from '@module-federation/enhanced/runtime';
 
-(async () => {
-  await init({
+try {
+  init({
     name: 'shell',
     remotes: [
       { name: 'campaign', alias: 'campaign', entry: 'http://localhost:4201/remoteEntry.js', type: 'module' },
@@ -19,12 +19,11 @@ import { init } from '@module-federation/enhanced/runtime';
       '@angular/router': { version: '^18.2.0' },
       'rxjs': { version: '~7.8.0' },
     },
-  }).catch(err => {
-    console.error('Error initializing Module Federation:', err);
-    throw err;
   });
+} catch (err) {
+  console.error('Error initializing Module Federation:', err);
+}
 
-  await bootstrapApplication(AppComponent, {
-    providers: [provideRouter(routes), importProvidersFrom(BrowserAnimationsModule)],
-  });
-})();
+bootstrapApplication(AppComponent, {
+  providers: [provideRouter(routes), importProvidersFrom(BrowserAnimationsModule)],
+}).catch(err => console.error('Error bootstrapping application:', err));
