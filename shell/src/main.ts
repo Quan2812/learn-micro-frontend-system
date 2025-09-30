@@ -4,17 +4,24 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app/app.routes';
 import { importProvidersFrom } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
 import { init } from '@module-federation/enhanced/runtime';
 
 (async () => {
   await init({
     name: 'shell',
     remotes: [
-      // 👇 khai báo kiểu module ESM (không cần globalName)
-      { name: 'campaign', entry: 'http://localhost:4201/remoteEntry.mjs', type: 'module' },
-      { name: 'template', entry: 'http://localhost:4202/remoteEntry.mjs', type: 'module' },
+      { name: 'campaign', alias: 'campaign', entry: 'http://localhost:4201/remoteEntry.js', type: 'module' },
+      { name: 'template', alias: 'template', entry: 'http://localhost:4202/remoteEntry.js', type: 'module' },
     ],
+    shared: {
+      '@angular/core': { version: '^18.2.0' },
+      '@angular/common': { version: '^18.2.0' },
+      '@angular/router': { version: '^18.2.0' },
+      'rxjs': { version: '~7.8.0' },
+    },
+  }).catch(err => {
+    console.error('Error initializing Module Federation:', err);
+    throw err;
   });
 
   await bootstrapApplication(AppComponent, {
