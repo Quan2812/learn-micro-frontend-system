@@ -28,3 +28,7 @@ Continue building your app on:
 2. Deploy your chats from the v0 interface
 3. Changes are automatically pushed to this repository
 4. Vercel deploys the latest version from this repository
+5. Note: 
+    "@angular-architects/module-federation": "^18.0.6", ---- 
+    "webpack": "^5.93.0", --- cd từng remote and npm install webpack@5.93.0 webpack-cli@5.1.4
+    "webpack-cli": "^5.1.4"
