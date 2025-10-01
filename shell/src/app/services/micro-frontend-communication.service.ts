@@ -64,12 +64,12 @@ export class MicroFrontendCommunicationService {
     })
   }
 
-  // // Cross micro frontend navigation
-  // navigateToMicroFrontend(mfe: string, route = ""): void {
-  //   const fullRoute = route ? `/${mfe}/${route}` : `/${mfe}`
-  //   this.emitEvent("NAVIGATE", "shell", {
-  //     target: mfe,
-  //     route: fullRoute,
-  //   })
-  // }
+  // Cross micro frontend navigation
+  navigateToMicroFrontend(mfe: string, route = ""): void {
+    const fullRoute = route ? `/${mfe}/${route}` : `/${mfe}`
+    this.emitEvent("NAVIGATE", "shell", {
+      target: mfe,
+      route: fullRoute,
+    })
+  }
 }

@@ -2,12 +2,20 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "./out-tsc/app",
-    "types": []
+    "types": [],
+    "paths": { "@angular/*": [ "../node_modules/@angular/*" ] }
   },
   "files": [
     "src/main.ts"
   ],
   "include": [
-    "src/**/*.d.ts"
+    "src/main.ts",
+    "src/polyfills.ts",
+    "src/app/**/*.ts",          // <-- bao trùm toàn bộ .ts trong app
+    "src/types/**/*.d.ts"       // <-- để TS thấy file .d.ts bạn vừa tạo
+  ],
+  "exclude": [
+    "src/test.ts",
+    "**/*.spec.ts"
   ]
 }

@@ -1,10 +1,11 @@
-import { bootstrapApplication } from "@angular/platform-browser"
-import { AppComponent } from "./app/app.component"
-import { provideRouter } from "@angular/router"
-import { routes } from "./app/app.routes"
-import { importProvidersFrom } from "@angular/core"
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations"
+// src/bootstrap.ts
+export async function bootstrapRemote() {
+  const { bootstrapApplication } = await import('@angular/platform-browser');
+  const { AppComponent } = await import('./app/app.component');
 
-bootstrapApplication(AppComponent, {
-  providers: [provideRouter(routes), importProvidersFrom(BrowserAnimationsModule)],
-}).catch((err) => console.error(err))
+  // ⚠️ Nếu bạn có app-level providers/app.config.ts, chỉ dùng cho standalone dev.
+  // Tránh app-level providers khi chạy dưới MF; hãy để providers ở cấp component/route.
+  // const { appConfig } = await import('./app/app.config'); // nếu có
+
+  await bootstrapApplication(AppComponent /*, appConfig*/);
+}

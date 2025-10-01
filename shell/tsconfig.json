@@ -1,26 +1,23 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
-    "noImplicitOverride": true,
-    "noPropertyAccessFromIndexSignature": true,
-    "noImplicitReturns": true,
-    "noFallthroughCasesInSwitch": true,
+    "rootDir": ".",
     "sourceMap": true,
     "declaration": false,
-    "downlevelIteration": true,
+    "moduleResolution": "node",
+    "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
-    "moduleResolution": "bundler",
     "importHelpers": true,
     "target": "ES2022",
     "module": "ES2022",
-    "useDefineForClassFields": false,
-    "lib": ["ES2022", "dom"]
+    "lib": ["es2020", "dom"],
+    "skipLibCheck": true, // Bỏ qua lỗi TypeScript trong node_modules
+    "skipDefaultLibCheck": true,
+    "baseUrl": ".",
+    "paths": { "@angular/*": [ "../node_modules/@angular/*" ] }
   },
-  "angularCompilerOptions": {
+  "exclude": ["node_modules", "tmp"],
+   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,

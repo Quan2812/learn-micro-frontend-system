@@ -15,7 +15,7 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "ngx-build-plus:browser",
           "options": {
             "outputPath": "dist/shell",
             "index": "src/index.html",
@@ -25,7 +25,12 @@
             "inlineStyleLanguage": "scss",
             "assets": ["src/favicon.ico", "src/assets"],
             "styles": ["src/styles.scss"],
-            "scripts": []
+            "scripts": [],
+            "extraWebpackConfig": "webpack.config.js",
+            "commonChunk": false,
+            "allowedCommonJsDependencies": [
+              "@module-federation/enhanced/runtime"
+            ]
           },
           "configurations": {
             "production": {
@@ -41,7 +46,11 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "extraWebpackConfig": "webpack.prod.config.js",
+              "allowedCommonJsDependencies": [
+                "@module-federation/enhanced/runtime"
+              ]
             },
             "development": {
               "buildOptimizer": false,
@@ -49,16 +58,20 @@
               "vendorChunk": true,
               "extractLicenses": false,
               "sourceMap": true,
-              "namedChunks": true
+              "namedChunks": true,
+              "allowedCommonJsDependencies": [
+                "@module-federation/enhanced/runtime"
+              ]
             }
           },
           "defaultConfiguration": "production"
         },
         "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
+          "builder": "ngx-build-plus:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "shell:build:production"
+              "buildTarget": "shell:build:production",
+              "extraWebpackConfig": "webpack.prod.config.js"
             },
             "development": {
               "buildTarget": "shell:build:development"
@@ -67,7 +80,9 @@
           "defaultConfiguration": "development",
           "options": {
             "port": 4200,
-            "publicHost": "http://localhost:4200"
+            "publicHost": "http://localhost:4200",
+            "proxyConfig": "proxy.conf.json",
+            "extraWebpackConfig": "webpack.config.js"
           }
         }
       }

@@ -9,10 +9,10 @@ export class ShellCommunicationService {
   constructor(private router: Router) {}
 
   // Navigate to other micro frontends through shell
-  navigateToCampaign(route = ""): void {
+  navigateToTemplate(route = ""): void {
     this.emitToShell("NAVIGATE", {
-      target: "campaign",
-      route: route ? `/campaign/${route}` : "/campaign",
+      target: "template",
+      route: route ? `/template/${route}` : "/template",
     })
   }
 
